@@ -62,12 +62,12 @@ public class HomeRestController {
 	}
 	
 	@GetMapping("/skill/{skills}")
-	public ResponseEntity<List<Skill>> getSkillBySkil(@PathVariable("skills") String skill)
+	public ResponseEntity<List<Employee>> getSkillBySkil(@PathVariable("skills") String skill)
 	{
 		if(skillService.getSkillService(skill)!=null)
-			return new ResponseEntity<List<Skill>>(skillService.getSkillService(skill),HttpStatus.OK);
+			return new ResponseEntity<List<Employee>>(skillService.getSkillService(skill),HttpStatus.OK);
 		else
-			return new ResponseEntity<List<Skill>>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<List<Employee>>(HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping("/skill/id/{employee}")
@@ -121,14 +121,18 @@ public class HomeRestController {
 
 
 	}
-	/*@PutMapping("/skill")
-	public ResponseEntity<Void> updateSkill(@RequestBody Employee employee,@RequestBody Skill skill)
+	@PutMapping("/skill")
+	public ResponseEntity<Void> updateSkill(@RequestBody Skill skill)
 	{
-		if(skillService.getSkillByEmpIdService(employee.getEmployeeid())!=null)
+		System.out.println(skill.getEmployee().getEmployeeid());
+		if(skillService.getSkillByEmpIdService(skill.getEmployee().getEmployeeid())!=null)
 		{
-			skillService.updateSkillService(skill)
+			skillService.updateSkillService(skill);
+			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
+		else
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 	}
-	*/
+	
 	
 }

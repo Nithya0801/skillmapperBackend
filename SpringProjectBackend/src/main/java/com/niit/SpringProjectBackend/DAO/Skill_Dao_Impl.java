@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.niit.SpringProjectBackend.Model.Employee;
 import com.niit.SpringProjectBackend.Model.Skill;
 
 @Repository("skilldao")
@@ -64,9 +65,16 @@ public class Skill_Dao_Impl implements Skill_Dao{
 		return ll;
 	}
 
-	public List<Skill> getSkillByskill(String skill) {
+	public List<Employee> getSkillByskill(String skill) {
 		List<Skill> sk=sessionFact.getCurrentSession().createQuery("from Skill where skill = '"+skill+"'").list();
-		return sk;
+		List<Employee> emp=null;
+		for(Skill skil:sk)
+		{
+			int id=skil.getEmployee().getEmployeeid();
+			 emp=sessionFact.getCurrentSession().createQuery("from Employee where employeeid="+id).list();
+		
+		}
+		return emp;
 	}
 
 }

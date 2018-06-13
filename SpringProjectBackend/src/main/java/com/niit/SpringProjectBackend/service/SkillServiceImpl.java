@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.niit.SpringProjectBackend.DAO.Skill_Dao;
+import com.niit.SpringProjectBackend.Model.Employee;
 import com.niit.SpringProjectBackend.Model.Skill;
 
 @Service
@@ -40,7 +41,7 @@ public class SkillServiceImpl implements SkillService{
 		return (skilldao.getSkillByEmpId(empid));
 	}
 	
-	public List<Skill> getSkillService(String skill)
+	public List<Employee> getSkillService(String skill)
 	{
 		return (skilldao.getSkillByskill(skill));
 	}
