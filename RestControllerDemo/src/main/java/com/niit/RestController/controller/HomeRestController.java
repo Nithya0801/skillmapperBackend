@@ -79,6 +79,17 @@ public class HomeRestController {
 			return new ResponseEntity<Skill>(HttpStatus.NOT_FOUND);
 	}
 	
+
+	@DeleteMapping("/skill/{skillid}")
+	public ResponseEntity<Void> deleteSkill(@PathVariable("skillid") int skillid)
+	{
+		if(skillService.getSkillByEmpIdService(skillid)!=null){
+			skillService.deleteSkillService(skillid);
+		 return new ResponseEntity<Void>(HttpStatus.OK);
+		}
+		else
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+	}
 	@DeleteMapping("/{employeeid}")
 	public ResponseEntity<Void> deleteEmployee(@PathVariable("employeeid") int employeeid) {
 		
